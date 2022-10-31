@@ -183,7 +183,7 @@ public:
 // Динамическая матрица - 
 // шаблонная матрица на динамической памяти
 template<typename T>
-class TDynamicMatrix : public TDynamicVector<TDynamicVector<T> >
+class TDynamicMatrix : private TDynamicVector<TDynamicVector<T> >
 {
     using TDynamicVector<TDynamicVector<T> >::pMem;
     using TDynamicVector<TDynamicVector<T> >::sz;
@@ -205,7 +205,9 @@ public:
         for(int i=0;i<sz;++i) if (pMem[i]!=m.pMem[i]) return false;
         return true;
     }
-    
+    bool operator!=(const TDynamicMatrix& m) const noexcept{
+        return !(*this==m);
+    }
     // матрично-скалярные операции
     TDynamicVector<T> operator*(const T& val)
     {
