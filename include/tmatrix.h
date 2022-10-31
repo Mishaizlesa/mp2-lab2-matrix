@@ -183,7 +183,7 @@ public:
 // Динамическая матрица - 
 // шаблонная матрица на динамической памяти
 template<typename T>
-class TDynamicMatrix : private TDynamicVector<TDynamicVector<T> >
+class TDynamicMatrix : public TDynamicVector<TDynamicVector<T> >
 {
     using TDynamicVector<TDynamicVector<T> >::pMem;
     using TDynamicVector<TDynamicVector<T> >::sz;
